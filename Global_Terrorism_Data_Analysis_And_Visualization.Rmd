@@ -1,0 +1,55 @@
+---
+title: "Global_Terrorism_Data_Analysis_And_Visualization"
+output: html_document
+date: "2025-05-10"
+---
+
+#ROLE 1: Navya - Data wrangling 
+#ROLE 2: Pooja - Data Analysis 
+#ROLE 3: Rajesh - Data Visualization
+
+#Role 1: Filter and group data by target type.
+
+
+```{r}
+# Data Wrangling
+library(tidyverse)
+# Import the dataset
+terrorism_data<-read.csv("globalterrorismdb_0718dist.csv")
+```
+
+```{r}
+# Initial Data Exploration
+# View the first few rows to get an idea of the structure
+head(terrorism_data)
+
+# Display the structure of the dataset: types of each column
+str(terrorism_data)
+
+# Summary statistics to understand distributions and detect possible data quality issues
+summary(terrorism_data)
+
+```
+```{r}
+# Check for missing values in the target type column (as part of validation)
+sum(is.na(terrorism_data$targtype1_txt))
+```
+### Observations: As per the task for group 4, it is observed that there are no missing values for the target type1 column.
+```{r}
+# Since no missing values were observed in 'targtype1_txt', we can proceed
+# Select relevant columns and order by target type code
+terrorism_data_ordered <- terrorism_data %>% 
+  select(targtype1, targtype1_txt) %>%  # Keep only target type columns
+  arrange(targtype1)  # Arrange the data by the coded target type
+
+```
+
+```{r}
+# View the ordered dataset
+print.data.frame(head(terrorism_data_ordered, 10))  # Display first 10 rows of the cleaned and arranged dataset
+
+# View the number of rows and columns in the selected data
+nrow(terrorism_data_ordered)  # Total rows
+ncol(terrorism_data_ordered)  # Total columns
+
+```
