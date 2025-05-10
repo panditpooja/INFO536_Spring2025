@@ -14,7 +14,7 @@ date: "2025-05-10"
 ```{r}
 # Data Wrangling
 library(tidyverse)
-# Import the dataset
+# Import the dataset 
 terrorism_data<-read.csv("globalterrorismdb_0718dist.csv")
 ```
 
