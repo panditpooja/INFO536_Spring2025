@@ -1,7 +1,7 @@
 ---
 title: "Global_Terrorism_Data_Analysis_And_Visualization"
 output: html_document
-date: "2025-05-10"
+date: "2025-05-09"
 ---
 
 #ROLE 1: Navya - Data wrangling 
@@ -9,7 +9,6 @@ date: "2025-05-10"
 #ROLE 3: Rajesh - Data Visualization
 
 #Role 1: Filter and group data by target type.
-
 
 ```{r}
 # Data Wrangling
@@ -52,4 +51,18 @@ print.data.frame(head(terrorism_data_ordered, 10))  # Display first 10 rows of t
 nrow(terrorism_data_ordered)  # Total rows
 ncol(terrorism_data_ordered)  # Total columns
 
+```
+#Role 2 Analysis Questions: Count the number of attacks on each target type
+
+```{r}
+# Load dplyr
+library(dplyr) # Loads the dplyr package, which is used for data manipulation using piping and tidy verbs like group_by and summarise.
+
+# Group by count using dplyr
+number_of_attack_per_target_type <- terrorism_data_ordered %>% # Takes the dataset `terrorism_data_ordered`
+  group_by(targtype1_txt) %>% # Groups the data by the 'targtype1_txt' column, which represents the type of target (e.g., government, private citizens).
+  summarise(total_count = n()) # Summarises the grouped data by counting the number of rows (i.e., attacks) in each group using `n()`.
+
+# Print the result is stored in `number_of_attack_per_target_type`, a data frame showing the number of attacks per target type.
+print.data.frame(number_of_attack_per_target_type)
 ```
